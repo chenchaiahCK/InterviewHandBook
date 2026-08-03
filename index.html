@@ -489,8 +489,13 @@
 
     .q-section-title { font-family: 'Outfit', sans-serif; font-size: 14px; font-weight: 600; color: #f472b6; margin: 20px 0 8px 0; }
     
-    /* MODIFIED: Added white-space: pre-line to support line breaks/bullet styling properly */
     .q-answer-text { font-size: 13px; line-height: 1.6; color: #cbd5e1; margin: 0; white-space: pre-line; }
+    
+    /* MODIFIED: Added distinct color and bold text styling option for answer section */
+    .q-answer-text b, .q-answer-text strong {
+      color: #f472b6;
+      font-weight: 700;
+    }
     
     .q-answer-text code { background: rgba(236, 72, 153, 0.15); color: #f472b6; padding: 2px 6px; border-radius: 4px; font-family: 'JetBrains Mono', monospace; font-size: 12px; border: 1px solid rgba(236, 72, 153, 0.3); }
 
@@ -501,6 +506,17 @@
     .code-box-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px; font-size: 10px; color: var(--neon-cyan); text-transform: uppercase; letter-spacing: 0.05em; font-weight: 600; }
     .code-copy-btn { border: 1px solid var(--line); background: transparent; color: var(--soft); padding: 3px 8px; border-radius: 5px; font-size: 10px; font-weight: 600; font-family: 'Inter', sans-serif; }
     .code-copy-btn:hover { color: #fff; background: rgba(255,255,255,0.05); }
+
+    /* SYNTAX CODE BLOCK FORMAT */
+    #qSyntaxCode {
+      white-space: pre-line;
+    }
+
+    /* MODIFIED: Added white-space: pre-line to output code block */
+    #qOutputCode {
+      white-space: pre-line;
+      color: #34d399;
+    }
 
     .q-nav-buttons { display: flex; justify-content: space-between; align-items: center; margin-top: 30px; padding-top: 16px; border-top: 1px solid var(--line); }
     .nav-nav-btn { border: 1px solid var(--line); background: var(--panel); color: var(--soft); padding: 8px 16px; border-radius: 8px; font-weight: 600; font-size: 12px; }
@@ -817,7 +833,7 @@
                   <span>python</span>
                   <button class="code-copy-btn" onclick="toast('Code snippet copied!')">Copy</button>
                 </div>
-                <div id="qSyntaxCode"><span style="color:#f472b6;">print</span>(<span style="color:#67e8f9;">"Hello"</span>)</div>
+                <div id="qSyntaxCode" style="white-space: pre-line;"><span style="color:#f472b6;">print</span>(<span style="color:#67e8f9;">"Hello"</span>)</div>
               </div>
 
               <div class="q-section-title">Output</div>
@@ -825,7 +841,7 @@
                 <div class="code-box-header" style="color: #34d399;">
                   <span>console output</span>
                 </div>
-                <div id="qOutputCode" style="color: #34d399;">Hello</div>
+                <div id="qOutputCode" style="white-space: pre-line; color: #34d399;">Hello</div>
               </div>
 
               <div class="q-nav-buttons">
@@ -890,18 +906,18 @@
             </div>
 
             <div class="field">
-              <label>Answer Description (Supports bullet points or multi-line text)</label>
-              <textarea id="qmQuestionAnswer" rows="4" placeholder="• First point&#10;• Second point&#10;• Third point&#10;• Fourth point"></textarea>
+              <label>Answer Description (Supports bullet points or multi-line text, use &lt;b&gt; or &lt;strong&gt; for bold with distinct color)</label>
+              <textarea id="qmQuestionAnswer" rows="4" placeholder="• <b>First point</b> (Bold & colored)&#10;• Second point&#10;• Third point&#10;• Fourth point"></textarea>
             </div>
 
             <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 14px;">
               <div class="field">
-                <label>Code Snippet</label>
+                <label>Code Snippet (Supports 3 lines display)</label>
                 <textarea id="qmQuestionSyntax" rows="3" placeholder="def my_gen(): yield 1"></textarea>
               </div>
               <div class="field">
-                <label>Console Output</label>
-                <textarea id="qmQuestionOutput" rows="3" placeholder="1"></textarea>
+                <label>Console Output (Supports 3 lines display)</label>
+                <textarea id="qmQuestionOutput" rows="3" placeholder="Line 1&#10;Line 2&#10;Line 3"></textarea>
               </div>
             </div>
 
@@ -1106,7 +1122,7 @@
           'Beginner': [
             { 
               q: "What is print()?", 
-              ans: "• <code>print()</code> is a built-in Python function used to display data on the standard output (console).\n• It accepts one or more objects, converts them to strings if necessary.\n• Writes them directly to the output stream (<code>stdout</code>).\n• Useful for debugging and rendering text outputs.", 
+              ans: "• <b>print()</b> is a built-in Python function used to display data on standard output.\n• It accepts one or more objects, converts them to strings if necessary.\n• Writes them directly to the output stream (<code>stdout</code>).\n• Useful for debugging and rendering text outputs.", 
               syntax: 'print("Hello")', 
               out: 'Hello' 
             }
@@ -1116,7 +1132,7 @@
           'Beginner': [
             { 
               q: "What is SSRS?", 
-              ans: "• SQL Server Reporting Services is a server-based report generation software system.\n• Allows building tabular, matrix, and graphical reports.\n• Managed via Report Server web interface.\n• RDL format standard.", 
+              ans: "• <b>SQL Server Reporting Services</b> is a server-based report generation software system.\n• Allows building tabular, matrix, and graphical reports.\n• Managed via Report Server web interface.\n• RDL format standard.", 
               syntax: 'Report Builder', 
               out: 'RDL Report' 
             }
